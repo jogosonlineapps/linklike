@@ -1,0 +1,32 @@
+RewriteEngine on
+
+RewriteBase /us
+
+ErrorDocument 404 /404.php
+
+#www to non www redirect
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteRule ^search/(.*)?$ search_main.php?q=$1
+
+RewriteRule ^app/([0-9]+)/(.*)?$ app_main.php?link=$1&name=$2
+
+RewriteRule ^new-apps?$ newapps_main.php
+RewriteRule ^new-free-apps?$ newfreeapps_main.php
+RewriteRule ^new-paid-apps?$ newpaidapps_main.php
+RewriteRule ^top-free-apps?$ topfreeapps_main.php
+RewriteRule ^top-grossing-apps?$ topgrosapps_main.php
+RewriteRule ^top-paid-apps?$ toppaidapps_main.php
+
+RewriteRule ^category/([0-9]+)/(.*)?$ category_main.php?id=$1&title=$2
+
+RewriteRule ^privacy?$ privacy_main.php
+RewriteRule ^dmca?$ dmca_main.php
+RewriteRule ^contact?$ contact_main.php
+
+RewriteRule ^countries?$ countries_main.php
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
